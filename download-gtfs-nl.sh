@@ -2,6 +2,7 @@ set -euo pipefail
 
 # URL of the GTFS feed (symlink to the latest schedule)
 GTFS_URL="https://gtfs.openov.nl/gtfs-nl.zip"
+GTFS_URL="https://gtfs.ovapi.nl/nl/gtfs-nl.zip"
 
 # Output file
 OUT_FILE="gtfs-nl.zip"
