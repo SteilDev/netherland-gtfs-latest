@@ -44,24 +44,24 @@ jobs:
       - name: Run gtfstidy to clean and merge feeds
         run: |
           export PATH=$PATH:$HOME/go/bin
-          DATE_START=$(date +%Y%m%d)
+          (
           gtfstidy \
             --recluster-stops \
             --remove-red-agencies \
             --remove-red-routes \
             --remove-red-services \
-            -delete-orphans \
+            --delete-orphans \
             --dist-threshold-stop 200 \
             --red-stops-fuzzy \
             --drop-shapes \
-            gtfs-nl.zip \
-            -o gtfs_netherland_clean.zip \
             --fix \
             --remove-fillers \
             --ensure-stop-parents \
             --stable-stop-ids-parents \
-            --explicit-calendar
-        >> tidy.log
+            --explicit-calendar \
+            gtfs-nl.zip \
+            -o gtfs_netherland_clean.zip
+         ) > tidy.log
 
       - name: Upload cleaned GTFS as release asset
         uses: softprops/action-gh-release@v1
