@@ -9,6 +9,7 @@ gtfstidy \
     --drop-shapes \
     --fix \
     --remove-fillers \
+    --minimize-services \
     --ensure-stop-parents \
     --stable-stop-ids-parents \
     --explicit-calendar \
