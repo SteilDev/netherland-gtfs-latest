@@ -44,25 +44,7 @@ jobs:
       - name: Run gtfstidy to clean and merge feeds
         run: |
           export PATH=$PATH:$HOME/go/bin
-
-          (
-            gtfstidy \
-              --recluster-stops \
-              --remove-red-agencies \
-              --remove-red-routes \
-              --remove-red-services \
-              --delete-orphans \
-              --dist-threshold-stop 200 \
-              --red-stops-fuzzy \
-              --drop-shapes \
-              --fix \
-              --remove-fillers \
-              --ensure-stop-parents \
-              --stable-stop-ids-parents \
-              --explicit-calendar \
-              gtfs-nl.zip \
-              -o gtfs_netherland_clean.zip
-          ) > tidy.log 2>&1
+          bash tidy.sh
 
       - name: Upload cleaned GTFS as release asset
         uses: softprops/action-gh-release@v1
@@ -71,6 +53,22 @@ jobs:
           files: gtfs_netherland_clean.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Restore GTFS metadata cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            gtfs-nl.zip.etag
+            gtfs-nl.zip.lastmod
+          key: gtfs-metadata
+
+      - name: Save GTFS metadata cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            gtfs-nl.zip.etag
+            gtfs-nl.zip.lastmod
+          key: gtfs-metadata
 
       - name: Write timestamp
         run: date -u +"%Y-%m-%dT%H:%M:%SZ" > last_update.txt
