@@ -2,7 +2,7 @@ Parsing GTFS feed in 'gtfs-nl.zip' ... done. (0 trips [0.00%], 733 stop times [0
 Removing unreferenced entries... done. (-171 trips [-0.02%], -2087 stops [-2.64%], -0 shapes [-0.00%], -49 services [-1.07%], -0 routes [-0.00%], -0 agencies [-0.00%], -0 transfers [-0.00%])
 Removing redundant agencies... done. (-2 agencies [-4.35%])
 Adding parent stations to all stops... done. (+23816 stations)
-Reclustering stops... done. (-14670 clusters) [-36.82%]
+Reclustering stops... done. (-14659 clusters) [-36.79%]
 Removing redundant routes... done. (-247 routes [-7.67%])
 Removing service duplicates... done. (-0 services [-0.00%])
 Computing stable stop ids ... done.
